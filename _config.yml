@@ -12,7 +12,7 @@ locale                   : "en-US"
 title                    : "Evgeny Bogdanov's Portfolio"
 title_separator          : "-"
 name                     : "Evgeny Bogdanov"
-description              : "BA (Hons.) Applied Economics, Queen's University Class of 2020"
+description              : "Evgeny Bogdanov's Portfolio"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -86,7 +86,7 @@ analytics:
 author:
   name             : "Evgeny Bogdanov"
   avatar           : "/images/Profile.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Data Science Portfolio"
+  bio              : "BA (Hons.) Applied Economics, Queen's University Class of 2020"
   location         : "Ottawa, ON, Canada"
   email            :
   uri              :
