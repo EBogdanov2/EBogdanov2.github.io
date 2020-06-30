@@ -7,11 +7,13 @@ header:
 excerpt: "Golf Analysis, Data Science, Data Wrangling, Regression Analysis" 
 mathjax: "true"
 ---
-# PGA Player Winnings by Shot Type
 
 ## Introduction 
-Most golfers have heard the saying: 'drive for show, putt for dough'. How valid is this claim? When examining PGA pros and their relevant statistics during a match, ew can determine which part of their game generates the largest amount of winnings.
+Most golfers have heard the saying: 'drive for show, putt for dough'. How valid is this claim? When examining PGA pros and their relevant statistics during a match, we can determine which part of their game generates the largest amount of winnings.
 
+# Data 
+The data was obtained from kaggle, and published by Brad Klassen. The data set can be explored by following the link: 
+https://www.kaggle.com/bradklassen/pga-tour-20102018-data
 
 # Cleaning
 The following code takes the kaggle data and reformats it into wide format in order to run a regression. 
