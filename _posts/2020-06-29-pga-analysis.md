@@ -8,7 +8,7 @@ excerpt: "Golf Analysis, Data Science, Data Wrangling, Regression Analysis"
 mathjax: "true"
 ---
 
-## Introduction 
+# Introduction 
 Most golfers have heard the saying: 'drive for show, putt for dough'. How valid is this claim? When examining PGA pros and their relevant statistics during a match, we can determine which part of their game generates the largest amount of winnings.
 
 # Data 
@@ -74,6 +74,67 @@ df_test.to_csv('test.csv')
 From here regression analysis can be preformed.  
 
 # Regression  
+The following code was used to run a regression: 
+
+```python
+# Import the required libraries
+from sklearn import linear_model
+from sklearn.model_selection import train_test_split 
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+
+# Select the 2019 data
+train = pd.read_csv('train.csv')  
+
+# Function for dropping index column and converting percentage columns to percentages
+def regtransform(df):
+    df.rename({"Unnamed: 0":"a"}, axis="columns", inplace=True)
+    df.drop(["a"], axis=1, inplace=True)  
+    del df['player_name']
+    del df['tournament'] 
+
+    df = df.apply(lambda x: x/100 if x.name not in ['Official Money - (MONEY)'] else x)
+    df = df.dropna()
+    return df
+
+df_train = regtransform(train)
+
+# Seperate dependent variable and independent variables
+X = df_train.loc[:, df_train.columns != 'Official Money - (MONEY)'] 
+y = df_train['Official Money - (MONEY)']
+
+# Train the model
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2)
+lm = linear_model.LinearRegression()
+model= lm.fit(X_train, y_train)
+predictions = lm.predict(X_test) 
+
+# Print score and coefficients
+coefs = pd.DataFrame(model.coef_, X.columns, columns=['Coefficient'])
+print("Score:", model.score(X_test, y_test))
+print(coefs)
+``` 
+
+The independent variables were all the GIR, putting, and yardage covered by drive percentages. The dependent variablers was official money. Overall the regression did not perform as expected, with extremely low model scores. 
+
+Model scores:
+
+```output
+Score: 0.05752240150422671
+                                                      Coefficient
+GIR Percentage - 125-150 yards - (%)                 13097.686751
+GIR Percentage - 150-175 yards - (%)                 58383.831588
+GIR Percentage - 175-200 yards - (%)                107007.108932
+GIR Percentage - 200+ yards - (%)                    52704.022171
+GIR Percentage - < 125 yards - (%)                  178493.525339
+GIR Percentage from Other than Fairway - (%)         53885.882518
+Going for the Green - Hit Green Pct. - (%)           30034.388464
+Percentage of Yardage covered by Tee Shots - (A...  508098.500781
+Putting from - > 25' - (% MADE)                     275662.314634
+Putting from 15-25' - (% MADE)                      195041.602165
+Putting from 5-15' - (% MADE)                       518973.776384
+```
 
 # Conclusion 
 
+Even with low model scores we can see that the putting variables made more money than yardage covered. The other important conclusion is that the GIR percentages were the largest factor in money earned. Overall the model was not accurate, but somewhat confirmed the importance of the short game over driving ability.
