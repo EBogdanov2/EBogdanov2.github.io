@@ -3,7 +3,6 @@ title: "PGA Player Winnings by Shot Type"
 date: 2020-06-29
 tags: [golf analysis, data science, data wrangling, regression]
 header: 
-    image: "/images/teeoff.jpg"
 excerpt: "Golf Analysis, Data Science, Data Wrangling, Regression Analysis" 
 mathjax: "true"
 ---
